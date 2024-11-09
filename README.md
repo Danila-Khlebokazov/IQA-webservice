@@ -31,12 +31,40 @@ evaluator. It quite accurately shows the quality of the image in the range from 
 on the initial dataset), where 1 indicates that their image is of high quality and 100 is not high quality. Practical
 experience has shown that images with a threshold higher than 50 can be considered low quality.
 
+| Image                                      | Score     |
+|--------------------------------------------|-----------|
+| ![monarch.jpg](./readme-files/monarch.jpg) | 3.2550659 |
+| ![img136.jpg](./readme-files/img136.jpg)   | 69.478698 |
+
 #### MS-SSIM
 
 As an alternative to identifying the residual image quality after compression, I decided to use the MS-SSIM estimator as
 it is well tested and PyTorch Image Quality library realized it well.
 
+| Original image                             | Distorted Image                          | Score    |
+|--------------------------------------------|------------------------------------------|----------|
+| ![monarch.jpg](./readme-files/monarch.jpg) | ![img136.jpg](./readme-files/img136.jpg) | 0.864083 |
+
 ## Performance Test
+
+I tried to load this service with 100 users.
+I also hosted the service on a macbook Air M1(2020) with 8GB of RAM and 8 cores.
+![Locust-statistics.png](./readme-files/Locust-statistics.png)
+I think here I entered the limits of my home network because test files are quite large (1.2 MB in average)
+
+| network load on server                                                       | network load on locust host                                                | CPU load                                                             |
+|------------------------------------------------------------------------------|----------------------------------------------------------------------------|----------------------------------------------------------------------|
+| ![Server-mac-network-load.jpeg](./readme-files/Server-mac-network-load.jpeg) | ![Locust-mac-network-load.png](./readme-files/Locust-mac-network-load.png) | ![Server-mac-cpu-load.jpeg](./readme-files/Server-mac-cpu-load.jpeg) |
+
+### How to run performance test?
+
+In case you want to run your own performance test.
+
+```bash
+cd test
+locust -f performance_test.py --host=http://x.x.x.x:8000
+```
+
 
 ## References
 
