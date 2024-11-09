@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "iqa-service"
+version = "0.1.0"
+description = "A webservice build with python (FastAPI) that uses a piq library for Image Quality Assessment"
+authors = ["d.khlebokazov <khlebokazov_work@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.*"
+fastapi = "^0.115.4"
+piq = "^0.8.0"
+scikit-image = "^0.24.0"
+uvicorn = "^0.32.0"
+python-multipart = "^0.0.17"
+pre-commit = "^4.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
