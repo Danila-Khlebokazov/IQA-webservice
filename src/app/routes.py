@@ -2,7 +2,7 @@ from fastapi import APIRouter, UploadFile, status
 from fastapi.responses import Response
 
 from .schemas import ScoreOutSchema
-from .services import get_brisque_score, get_ms_ssim_score
+from .services import iqa
 
 router = APIRouter(prefix="/api/v1/iqa", tags=["api"])
 
@@ -29,7 +29,7 @@ router = APIRouter(prefix="/api/v1/iqa", tags=["api"])
 )
 async def nr_brisque(image: UploadFile):
     try:
-        score = await get_brisque_score(await image.read())
+        score = await iqa.aget_brisque_score(await image.read())
         return ScoreOutSchema(score=score)
     except Exception as e:
         return Response(status_code=status.HTTP_400_BAD_REQUEST, content=str(e))
@@ -58,7 +58,9 @@ async def nr_brisque(image: UploadFile):
 )
 async def fr_ms_ssim(original_image: UploadFile, distorted_image: UploadFile):
     try:
-        score = await get_ms_ssim_score(await original_image.read(), await distorted_image.read())
+        score = await iqa.aget_ms_ssim_score(
+            await original_image.read(), await distorted_image.read()
+        )
         return ScoreOutSchema(score=score)
     except Exception as e:
         return Response(status_code=status.HTTP_400_BAD_REQUEST, content=str(e))

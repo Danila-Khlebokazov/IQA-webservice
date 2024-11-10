@@ -47,14 +47,19 @@ it is well tested and PyTorch Image Quality library realized it well.
 
 ## Performance Test
 
-I tried to load this service with 100 users.
-I also hosted the service on a macbook Air M1(2020) with 8GB of RAM and 8 cores.
+I tried to load this service with 50 users.
+As I hosted service on my local machine and locust too, the performance is not so good. Tested on MacBook Pro M1.
 ![Locust-statistics.png](./readme-files/Locust-statistics.png)
-I think here I entered the limits of my home network because test files are quite large (1.2 MB in average)
+I think here I entered the limits of my local machine. Because I have build-in GPU in the Apple M1 the average of
+requests is ~6s.
+I think it might be highly improved with rather external GPU server or more powerful build-in GPU.
 
-| network load on server                                                       | network load on locust host                                                | CPU load                                                             |
-|------------------------------------------------------------------------------|----------------------------------------------------------------------------|----------------------------------------------------------------------|
-| ![Server-mac-network-load.jpeg](./readme-files/Server-mac-network-load.jpeg) | ![Locust-mac-network-load.png](./readme-files/Locust-mac-network-load.png) | ![Server-mac-cpu-load.jpeg](./readme-files/Server-mac-cpu-load.jpeg) |
+| network load                                        | CPU load                                     | request time without load test                                                 |
+|-----------------------------------------------------|----------------------------------------------|--------------------------------------------------------------------------------|
+| ![Network-load.png](./readme-files/Nework-load.png) | ![Cpu-load.png](./readme-files/Cpu-load.png) | ![Request-time-without-load.png](./readme-files/Request-time-without-load.png) |
+
+Overall for this I launched additional python processes, but it is needed to be tested on a more powerful machine so
+that maybe even different processes will be useless.
 
 ### How to run performance test?
 
@@ -64,7 +69,6 @@ In case you want to run your own performance test.
 cd test
 locust -f performance_test.py --host=http://x.x.x.x:8000
 ```
-
 
 ## References
 
