@@ -50,7 +50,7 @@ it is well tested and PyTorch Image Quality library realized it well.
 I tried to load this service with 50 users.
 As I hosted service on my local machine and locust too, the performance is not so good. Tested on MacBook Pro M1.
 ![Locust-statistics.png](./readme-files/Locust-statistics.png)
-I think here I entered the limits of my local machine. Because I have build-in GPU in the Apple M1 the average of
+I think here I entered the limits of my local machine. Because I have only some GPU cores build in the Apple M1, the average of
 requests is ~6s.
 I think it might be highly improved with rather external GPU server or more powerful build-in GPU.
 
